@@ -1,9 +1,56 @@
 "use client";
-import React, { useState } from "react";
+import { PRODUCT_CATEGORIES } from "@/config";
+import React, { useEffect, useRef, useState } from "react";
+import NavItem from "./NavItem";
+import { useOnClickOutside } from "./hooks/use-on-click-outside";
 
 function NavItems() {
   const [activeIndex, setActiveIndex] = useState(null);
-  return <div className="flex gap-4 h-4"></div>;
+  const isAnyOpen = activeIndex !== null;
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === "Escape") {
+        setActiveIndex(null);
+      }
+    };
+
+    document.addEventListener("keydown", handler);
+
+    return () => {
+      document.removeEventListener("keydown", handler);
+    };
+  }, []);
+
+  const navRef = useRef(null);
+
+  useOnClickOutside(navRef, () => setActiveIndex(null));
+
+  return (
+    <div className="flex gap-4 h-4" ref={navRef}>
+      {PRODUCT_CATEGORIES.map((category, index) => {
+        const handleOpen = () => {
+          if (activeIndex === index) {
+            setActiveIndex(null);
+          } else {
+            setActiveIndex(index);
+          }
+        };
+
+        const isOpen = index === activeIndex;
+
+        return (
+          <NavItem
+            category={category}
+            handleOpen={handleOpen}
+            isOpen={isOpen}
+            key={category.value}
+            isAnyOpen={isAnyOpen}
+          />
+        );
+      })}
+    </div>
+  );
 }
 
 export default NavItems;

@@ -1,4 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
+  webpack: (config) => {
+    // ignore formidable warnings
+    config.ignoreWarnings = [
+      { module: /node_modules\/formidable\/src\/Formidable\.js/ },
+      { file: /node_modules\/formidable\/src\/index\.js/ },
+    ];
 
-module.exports = nextConfig
+    return config;
+  },
+};
+
+module.exports = nextConfig;
