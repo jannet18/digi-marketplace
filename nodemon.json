@@ -1,0 +1,6 @@
+{
+  "watch": ["server.jsx", "src/collections/**/*.jsx/*.js", "src/trpc/index.js"],
+  "exec": "js-node --project jsconfig.server.json src/server.jsx -- -I",
+  "ext": "js jsx",
+  "stdin": false
+}
