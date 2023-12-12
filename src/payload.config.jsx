@@ -1,7 +1,13 @@
+import { buildConfig } from "payload/config";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
+import path from "path";
+import dotenv from "dotenv";
 
+dotenv.config({
+  path: path.resolve(__dirname, "../.env"),
+});
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
   collections: [],
@@ -9,11 +15,12 @@ export default buildConfig({
     admin: "/sell",
   },
   admin: {
-    bundler: webpackBundler,
+    // user: "users",
+    bundler: webpackBundler(),
     meta: {
       titleSuffix: "- DigitalHippo/",
       favicon: "/favicon.ico",
-      ogImage: "/thumnail.jpg",
+      ogImage: "/thumbnail.jpg",
     },
   },
   rateLimit: {

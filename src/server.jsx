@@ -1,17 +1,17 @@
-import { Express } from "express";
+import { express } from "express";
 import { getPayloadClient } from "./get-payload";
 import { nextApp, nextHandler } from "./next.utils";
 
-const app = Express();
+const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
 const start = async () => {
   // start up CMS
   const payload = await getPayloadClient({
     initOptions: {
-      Express: app,
+      express: app,
       onInit: async (cms) => {
-        cms.logger.info(`Admin Url ${cms.getAdminUrl()}`);
+        cms.logger.info(`Admin URL ${cms.getAdminUrl()}`);
       },
     },
   });

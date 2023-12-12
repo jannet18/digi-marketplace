@@ -6,5 +6,5 @@
     "noEmit": false,
     "jsx": "react"
   },
-  "include": ["src/server.jsx", "src/payload/congig.jsx"]
+  "include": ["src/server.jsx", "src/payload.config.jsx"]
 }
