@@ -10,12 +10,12 @@ dotenv.config({
 });
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
-  collections: [],
+  collections: ["Users"],
   routes: {
     admin: "/sell",
   },
   admin: {
-    // user: "users",
+    user: "users",
     bundler: webpackBundler(),
     meta: {
       titleSuffix: "- DigitalHippo/",

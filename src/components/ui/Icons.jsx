@@ -1,5 +1,3 @@
-import { LucideProps } from "lucide-react";
-
 export const Icons = {
   logo: (props) => (
     <svg {...props} viewBox="0 0 512 512">
